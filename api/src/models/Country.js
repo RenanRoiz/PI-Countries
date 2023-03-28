@@ -5,7 +5,7 @@ const { DataTypes } = require('sequelize');
 
 Country = (sequelize) => {
   // defino el modelo
-  sequelize.define('country', {
+  sequelize.define('Country', {
     id:{
       type: DataTypes.STRING(3), //El ID debe tener 3 letras
       allowNull: false,

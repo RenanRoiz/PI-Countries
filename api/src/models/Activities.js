@@ -1,10 +1,10 @@
 const {DataTypes} = require ("sequelize");
 
 
-Activities = (sequelize)=>{
-    sequelize.define("activities", {
+Activity = (sequelize)=>{
+    sequelize.define("Activity", {
         id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
@@ -34,3 +34,5 @@ Activities = (sequelize)=>{
         }
     })
 }
+
+module.exports=Activity;
