@@ -11,15 +11,15 @@ Country = (sequelize) => {
       allowNull: false,
       primaryKey: true //El ID es nuestra clave primaria
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    bandera:{
+    imgFlag:{
       type: DataTypes.STRING,
       allowNull: false
     },
-    continente:{
+    continent:{
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,15 +27,16 @@ Country = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    poblacion:{
+    population:{
       type: DataTypes.INTEGER,
       allowNull: false
     },
     subregion:{
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     area:{
-      type: DataTypes.INTEGER
+      type: DataTypes.REAL,
+      allowNull: false
     },
   },{
     timestamps: false /*Evitamos que sequelize agregue automáticamente los campos de marca de tiempo 

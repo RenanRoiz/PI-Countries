@@ -8,21 +8,24 @@ const traerCountries = async ()=>{
         const countries = response.data.map(pais=>{
             return{
                 id: pais.cca3,
-                nombre: pais.name.common,
-                bandera: pais.flags[1], //La 2da, o sea, la 1 está en PNG
-                continente: pais.continents[0],
-                capital: pais.capital[0], //Algunos paises tienen más de una capital. Ej.: Sudáfrica
-                poblacion: pais.population,
+                name: pais.name.common,
+                imgFlag: pais.flags[1], //La 2da, o sea, la 1 está en PNG
+                continent: pais.continents[0],
+                capital: pais.capital != null ? pais.capital[0] : "No data",
+                population: pais.population,
                 subregion: pais.subregion,
                 area: pais.area
             }
         })
+
         return countries;
     }
     catch(error){
         throw new Error (error);
     }
 }
+
+
 
 const getOneCountry = async (req,res)=>{
     const {id}= req.params;
@@ -67,8 +70,10 @@ const getCountries = async (req,res)=>{
     }
     catch(error){
         res.status(500).json({message: error.message})
+        console.log(error)
     }
 }
+
 
 module.exports={
     getCountries, getOneCountry
