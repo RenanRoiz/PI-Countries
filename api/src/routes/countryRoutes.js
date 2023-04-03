@@ -5,6 +5,6 @@ const router = express.Router()
 const { getCountries, getOneCountry } = controllers;
 
 router.get('/', getCountries)
-router.get('/:countryId', getOneCountry)
+router.get('/:id', getOneCountry)
 
 module.exports = router;

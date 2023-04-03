@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 
 const traerCountries = async ()=>{
     try{
-        const response = await axios ("https://restcountries.com/v3/all");
+        const response = await axios.get("https://restcountries.com/v3/all");
         const countries = response.data.map(pais=>{
             return{
                 id: pais.cca3,
@@ -30,7 +30,17 @@ const traerCountries = async ()=>{
 const getOneCountry = async (req,res)=>{
     const {id}= req.params;
     try{
-        const pais= await Country.findByPk(id,{
+        const pais= await Country.findByPk(id.toUpperCase(),{
+            attributes: [
+                "id",
+                "name",
+                "imgFlag",
+                "continent",
+                "population",
+                "capital",
+                "subregion",
+                "area",
+              ],
             include: [{
                 model: Activity,
                 attributes: { exclude: [ "createdAt", "deletedAt", "updatedAt" ] },
