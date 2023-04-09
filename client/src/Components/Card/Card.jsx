@@ -3,9 +3,9 @@ import style from "./Card.module.css"
 const Card = (props)=>{
     return (
         <div className={style.Card}>
-            <p>Name: {props.name}</p>
+            <h2>Name: {props.name}</h2>
             <p>Bandera: {props.imgFlag}</p>
-            <p>Continente: {props.continent}</p>
+            <h3>Continente: {props.continent}</h3>
         </div>
     )
 }

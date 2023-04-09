@@ -1,8 +1,10 @@
 .container{
-    border: 1px solid black;
-    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
-    border-radius: 15px;
+    border-radius: 8px;
     flex-wrap: wrap;
     gap: 1em;
+    display: flex;
+    background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
 }
