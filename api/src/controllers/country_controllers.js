@@ -2,6 +2,7 @@ const { Country, Activity } = require('../db.js')
 const axios = require('axios')
 const { Op } = require("sequelize");
 
+
 const traerCountries = async ()=>{
     try{
         const response = await axios.get("https://restcountries.com/v3/all");

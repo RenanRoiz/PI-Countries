@@ -17,7 +17,7 @@ Country = (sequelize) => {
     },
     imgFlag:{
       type: DataTypes.STRING,
-      allowNull: false
+      //allowNull: false
     },
     continent:{
       type: DataTypes.STRING,
