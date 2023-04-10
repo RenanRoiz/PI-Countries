@@ -25,7 +25,6 @@ Country = (sequelize) => {
     },
     capital:{
       type: DataTypes.STRING,
-      allowNull: false
     },
     population:{
       type: DataTypes.INTEGER,

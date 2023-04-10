@@ -76,7 +76,7 @@ const getCountries = async (req,res)=>{
         ? await Country.findAll({where: { nombre: { [Op.match]: nombre }}, include: includeActivityModel })
         : await Country.findAll({include: includeActivityModel})
 
-        res.status(200).json({countries:reqCountries})
+        res.status(200).json(reqCountries)
 
     }
     catch(error){
