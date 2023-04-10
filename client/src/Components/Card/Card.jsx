@@ -6,7 +6,7 @@ const Card = (props)=>{
         <div className={style.Card}>
             <img src={props.imgFlag} alt="Bandera"/>
             <h2> <Link to={`/detail/${props.id}`}>
-                Nombre: {props.name}
+                {props.name}
             </Link></h2>
             <h3>Continente: {props.continent}</h3>
             <h4>Población: {props.population}</h4>
