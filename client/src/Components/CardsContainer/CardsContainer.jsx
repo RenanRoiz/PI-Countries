@@ -8,10 +8,13 @@ const CardsContainer = ()=>{
 
     return(
         <div className={style.container}>
-            { countries.map(country=>{ return <Card 
-                imgFlag = {countries.imgFlag}
-                name = {countries.name}
-                continent = {countries.continent}
+            { countries.map((country,index)=>{ return <Card
+                id={country} 
+                key={index}
+                imgFlag = {country.imgFlag}
+                name = {country.name}
+                continent = {country.continent}
+                population={country.population}
             />})}
         </div>
     )
