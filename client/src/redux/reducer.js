@@ -1,7 +1,9 @@
-import { GET_COUNTRIES, ORDER_COUNTRY,ORDER_POPULATION } from "./actions";
+import { GET_COUNTRIES, ORDER_COUNTRY,ORDER_POPULATION, SEARCH_COUNTRIES,FILTER_BY_CONTINENT,FILTER_BY_ACTIVITY } from "./actions";
 
 const initialState={
-    countries: []
+    countries: [],
+    currentPage: 1,
+    totalPages: 1,
 }
 
 const rootReducer=(state=initialState, action)=>{
@@ -41,6 +43,31 @@ const rootReducer=(state=initialState, action)=>{
                 population: orderPopulation
                 }
                 }
+        case SEARCH_COUNTRIES:
+      const query = action.payload.toLowerCase();
+      const filteredCountries = state.countries.filter((country) => {
+        return country.name.toLowerCase().includes(query);
+      });
+      return {
+        ...state,
+        countries: filteredCountries,
+      };
+      case FILTER_BY_CONTINENT:
+      const filteredByContinent = state.countries.filter(
+        (country) => country.continent === action.payload
+      );
+      return {
+        ...state,
+        countries: filteredByContinent,
+      };
+    case FILTER_BY_ACTIVITY:
+      const filteredByActivity = state.countries.filter((country) =>
+        country.activities.includes(action.payload)
+      );
+      return {
+        ...state,
+        countries: filteredByActivity,
+      };
         default: 
             return{...state}
     }

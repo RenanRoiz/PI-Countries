@@ -1,29 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { buscarPorNombre } from "../../redux/actions";
-import style from "./SearchBar.module.css";
+import { searchCountries } from "../../redux/actions"
 
-const SearchBar=()=>{
-    const [input,setInput]=useState("");
-    const dispatch = useDispatch;
+const SearchBar = () => {
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
 
-    const handleInput = (event) => {
-        setInput(event.target.value);
-    };
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
 
-    const handleButton = () => {
-        input
-            ? dispatch(buscarPorNombre(input)).catch((err) => alert(err.response.data))
-            : alert("Ingrese un país");
-        setInput('');
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(searchCountries(query));
+  };
 
-    return (
-        <div>
-            <input className="" placeholder="Ingrese un país" name="name" type="text" value={input} onChange={handleInput}></input>
-            <button className={style.boton} onClick={handleButton}></button>
-        </div>
-    )
-}
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" value={query} onChange={handleChange} />
+      <button type="submit">Search</button>
+    </form>
+  );
+};
 
 export default SearchBar;

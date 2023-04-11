@@ -2,10 +2,11 @@ import axios from "axios";
 export const GET_COUNTRIES="GET_COUNTRIES"
 export const GET_BY_ID= "GET_BY_ID"
 export const SEARCH_BY_NAME= "SEARCH_BY_NAME"
-export const FILTER_CONTINENTS= "FILTER_CONTINENTS"
 export const ORDER_COUNTRY= "ORDER_COUNTRY"
 export const ORDER_POPULATION = "ORDER_POPULATION"
-export const FILTER_ACTIVITIES = "FILTER_ACTIVITIES"
+export const SEARCH_COUNTRIES = "SEARCH_COUNTRIES";
+export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 
 
 export const getCountries = () => {
@@ -34,13 +35,15 @@ export const buscarPorNombre = (name)=>{
   }
 }
 
-export const filterContinent = (continent) => {
-  return { type: FILTER_CONTINENTS, payload: continent };
-}
+export const filterByContinent = (continent) => ({
+  type: FILTER_BY_CONTINENT,
+  payload: continent,
+});
 
-export const filterActivity = (activity) => {
-  return { type: FILTER_ACTIVITIES, payload: activity };
-};
+export const filterByActivity = (activity) => ({
+  type: FILTER_BY_ACTIVITY,
+  payload: activity,
+});
 
 
 export const ordenarPorPais = (order) => {
@@ -50,3 +53,8 @@ export const ordenarPorPais = (order) => {
 export const ordenarPorPoblacion = (order) => {
   return { type: ORDER_POPULATION, payload: order };
 };
+
+export const searchCountries = (query) => ({
+  type: SEARCH_COUNTRIES,
+  payload: query,
+});
