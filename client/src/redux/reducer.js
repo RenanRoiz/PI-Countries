@@ -1,8 +1,9 @@
-import { GET_COUNTRIES, SEARCH_COUNTRIES,FILTER_BY_CONTINENT,FILTER_BY_ACTIVITY,SORT_COUNTRIES_BY_NAME,
-  SORT_COUNTRIES_BY_POPULATION } from "./actions";
+import { GET_COUNTRIES, SEARCH_COUNTRIES,FILTER_BY_CONTINENT,SORT_COUNTRIES_BY_NAME,
+  SORT_COUNTRIES_BY_POPULATION, GET_ACTIVITIES, ADD_ACTIVITY, SET_CURRENT_PAGE } from "./actions";
 
 const initialState={
     countries: [],
+    activities: [],
     sortedBy: {
       name: null,
       population: null
@@ -15,6 +16,13 @@ const rootReducer=(state=initialState, action)=>{
     switch(action.type){
         case GET_COUNTRIES:
             return {...state, countries: action.payload}
+        case GET_ACTIVITIES:
+            return {...state, activities: action.payload}
+        case ADD_ACTIVITY:
+      return {
+        ...state,
+        activities: [...state.activities, action.payload],
+      };
         case SEARCH_COUNTRIES:
       const query = action.payload.toLowerCase();
       const filteredCountries = state.countries.filter((country) => {
@@ -31,14 +39,6 @@ const rootReducer=(state=initialState, action)=>{
       return {
         ...state,
         countries: filteredByContinent,
-      };
-    case FILTER_BY_ACTIVITY:
-      const filteredByActivity = state.countries.filter((country) =>
-        country.activities.includes(action.payload)
-      );
-      return {
-        ...state,
-        countries: filteredByActivity,
       };
       case SORT_COUNTRIES_BY_NAME:
         const { order: nameOrder } = action.payload;
@@ -75,6 +75,11 @@ const rootReducer=(state=initialState, action)=>{
           ...state.sortedBy,
           population: populationOrder
         }
+      };
+      case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
         default: 
             return{...state}
