@@ -10,7 +10,7 @@ const CardsContainer = ()=>{
     return(
         <div className={style.container}>
             { countries.map((country,index)=>{ return <Card
-                id={country} 
+                id={country.id} 
                 key={index}
                 imgFlag = {country.imgFlag}
                 name = {country.name}
