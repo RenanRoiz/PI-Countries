@@ -1,7 +1,12 @@
-import { GET_COUNTRIES, ORDER_COUNTRY,ORDER_POPULATION, SEARCH_COUNTRIES,FILTER_BY_CONTINENT,FILTER_BY_ACTIVITY } from "./actions";
+import { GET_COUNTRIES, SEARCH_COUNTRIES,FILTER_BY_CONTINENT,FILTER_BY_ACTIVITY,SORT_COUNTRIES_BY_NAME,
+  SORT_COUNTRIES_BY_POPULATION } from "./actions";
 
 const initialState={
     countries: [],
+    sortedBy: {
+      name: null,
+      population: null
+    },
     currentPage: 1,
     totalPages: 1,
 }
@@ -10,39 +15,6 @@ const rootReducer=(state=initialState, action)=>{
     switch(action.type){
         case GET_COUNTRIES:
             return {...state, countries: action.payload}
-        case ORDER_COUNTRY:
-            let orderCountries = action.payload ==='asc' 
-                ? state.countries.sort(function (a, b) {
-                    if (a.name > b.name) return 1;
-                    if (b.name > a.name)  return -1
-                    return 0;
-                        }) 
-                : state.countries.sort(function (a, b) {
-                        if (a.name > b.name) return -1;
-                        if (b.name > a.name) return 1;
-                        return 0;
-                })
-            return {
-                ...state,
-                countries: orderCountries,
-            }
-        case ORDER_POPULATION: {
-                const orderPopulation = action.payload === 'POA' ?
-                state.countries.sort(function (a, b) {
-                        if (a.population > b.population) return -1;
-                        if (b.population > a.population)  return 1;
-                        return 0;
-                }) :
-                state.countries.sort(function (a, b) {
-                        if (a.population > b.population) return 1;
-                        if (b.population > a.population) return -1;
-                        return 0;
-                })
-        return {
-                ...state,
-                population: orderPopulation
-                }
-                }
         case SEARCH_COUNTRIES:
       const query = action.payload.toLowerCase();
       const filteredCountries = state.countries.filter((country) => {
@@ -67,6 +39,42 @@ const rootReducer=(state=initialState, action)=>{
       return {
         ...state,
         countries: filteredByActivity,
+      };
+      case SORT_COUNTRIES_BY_NAME:
+        const { order: nameOrder } = action.payload;
+        const sortedByName = state.countries.slice().sort((a, b) => {
+          const aName = a.name.toLowerCase();
+          const bName = b.name.toLowerCase();
+          if (nameOrder === 'asc') {
+            return aName.localeCompare(bName);
+          } else {
+            return bName.localeCompare(aName);
+          }
+        });
+        return {
+          ...state,
+          countries: sortedByName,
+          sortedBy: {
+            ...state.sortedBy,
+            name: nameOrder
+          }
+        };
+        case SORT_COUNTRIES_BY_POPULATION:
+      const { order: populationOrder } = action.payload;
+      const sortedByPopulation = state.countries.slice().sort((a, b) => {
+        if (populationOrder === 'asc') {
+          return a.population - b.population;
+        } else {
+          return b.population - a.population;
+        }
+      });
+      return {
+        ...state,
+        countries: sortedByPopulation,
+        sortedBy: {
+          ...state.sortedBy,
+          population: populationOrder
+        }
       };
         default: 
             return{...state}

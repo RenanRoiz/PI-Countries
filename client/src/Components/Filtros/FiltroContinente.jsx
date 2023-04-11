@@ -1,29 +1,27 @@
-import { useDispatch } from 'react-redux';
-import { filterContinent } from "./../../redux/actions"
+import { useDispatch} from "react-redux";
+import {filterByContinent } from "../../redux/actions";
 
-const FiltroContinente = () => {
-  const dispatch = useDispatch();
+const FiltroContinente = ()=>{
 
-  const handleFiltroContinente = (event) => {
-    dispatch(filterContinent(event.target.value));
-  }
+  const dispatch=useDispatch();
 
-  return (
-    <select onChange={handleFiltroContinente}>
-        <option disabled selected>
-          Seleccionar...
-        </option>
-        <option value="All">All</option>
-        <option value="North America">North America</option>
-        <option value="Africa">Africa</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="Oceania">Oceania</option>
-        <option value="South America">South America</option>
-        <option value="Antarctica">Antarctica</option>
-    </select>
+  const handleContinentFilter = (continent) => {
+    dispatch(filterByContinent(continent));
+  };
+
+  return(
+    <div>
+        <button onClick={() => handleContinentFilter("North America")}>North America</button>
+        <button onClick={() => handleContinentFilter("Europe")}>Europe</button>
+        <button onClick={() => handleContinentFilter("Asia")}>Asia</button>
+        <button onClick={() => handleContinentFilter("Africa")}>Africa</button>
+        <button onClick={() => handleContinentFilter("South America")}>South America</button>
+        <button onClick={() => handleContinentFilter("Oceania")}>Oceania</button>
+        <button onClick={() => handleContinentFilter("Antarctica")}>Antarctica</button>
+      </div>
   )
-
+  
 }
+
 
 export default FiltroContinente;
