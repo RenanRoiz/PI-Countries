@@ -31,7 +31,7 @@ const createActivity=async (req,res)=>{
         res.status(400).json({ message: `No se puede crear la actividad. Ya existe una con el nombre "${nombre}"` })
       
       else 
-        res.status(500).json({ message: error.message })
+        res.status(200).json("Actividad creada")
     }
 }
 
@@ -46,7 +46,10 @@ const traerActividades = async(req,res)=>{
             },
             attributes: { exclude: [ "createdAt", "updatedAt" ] }
         })
+        res.status(200).json(activities)
     }
+
+    
     catch(error){
         res.status(500).json({message: error.message})
     }
