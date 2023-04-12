@@ -39,7 +39,7 @@ export default function Form() {
         "dificultad": difficulty,
         "temporada": season,
         "duracion": duration,
-        "paises": [countriesId]
+        "paises": countriesId
       })
       e.preventDefault()
       alert("La actividad se creo correctamente")

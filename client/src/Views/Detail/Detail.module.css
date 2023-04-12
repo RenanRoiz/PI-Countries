@@ -1,3 +1,14 @@
+.detail{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    display: flex;
+    background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+}
+
+
 .contenedor {
     display: flex;
     flex-direction: column;
@@ -10,6 +21,7 @@
     margin: 10px;
     width: 300px;
     margin: 10px auto;
+    background: #ffffff;
   }
   
   .contenedor img {

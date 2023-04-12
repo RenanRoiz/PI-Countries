@@ -24,9 +24,10 @@ export function getActivities () {
     return async function(dispatch){
       const apiData = await axios.get("http://localhost:3001/activities");
       const activities = apiData.data;
+      console.log(apiData, "Action");
       return dispatch({
           type: GET_ACTIVITIES,
-          payload:activities.data,
+          payload:activities,
       })
         
         }
