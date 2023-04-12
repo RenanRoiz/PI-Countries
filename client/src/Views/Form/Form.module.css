@@ -1,49 +1,60 @@
+.container{
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  display: flex;
+  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+  margin-top: 5px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
+    max-width: 700px; 
+    margin-top: 20px; 
+    height: 85vh; 
+    padding: 1rem; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    background-color: #E8F1F8
   }
   
 .form label {
-    margin-top: 10px;
-    font-weight: bold;
+  font: caption;
+  font-weight: bold;
+  margin-bottom: 1rem; /* Agregar margen inferior */
+
   }
   
-.form input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: 300px;
-    font-size: 16px;
+.form input,select {
+  font: caption;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin-bottom: 1rem; /* Agregar margen inferior */
+
   }
 
-.form select{
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 300px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
   
 .form select:focus {
     border-color: #2196f3;
     outline: none;
   }
 
-.form button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-.form button[type="submit"]:hover {
-    background-color: #3e8e41;
-  }
+.form button{
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #0077cc;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+.form button:hover {
+  background-color: #005fa3;
+}

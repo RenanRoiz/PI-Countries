@@ -27,9 +27,6 @@ const Home = ()=>{
     const handlePageChange = (page) => {
         dispatch(setCurrentPage(page));
       };
-    
-
-
 
     return (
         <div className={style.container}>
@@ -41,7 +38,6 @@ const Home = ()=>{
              <div className={style.container_2}>
              <SearchBar />
             </div>
-            
              <CardsContainer currentPage={currentPage} pageSize={pageSize}/>
              <Paged currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
