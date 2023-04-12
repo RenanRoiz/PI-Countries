@@ -1,6 +1,6 @@
 const { searchCountryByNameController, getAllCountriesController, countryByIdController } = require('../controllers/country_controllers');
 
-const getCoiuntryById = async (req, res) => {
+const getCountryById = async (req, res) => {
     const { id } = req.params;
     try {
         if (id) {
@@ -27,5 +27,5 @@ const getAllCountriesHandler = async (req, res) => {
 
 module.exports = {
     getAllCountriesHandler,
-    getCoiuntryById
+    getCountryById
 }
