@@ -1,7 +1,5 @@
-const { Country, Activity } = require('../db.js')
-const axios = require('axios')
-const { Op } = require("sequelize");
-
+const axios = require('axios');
+const {Country} = require('../db');
 
 const traerCountries = async ()=>{
     try{
@@ -27,65 +25,43 @@ const traerCountries = async ()=>{
 }
 
 
-
-const getOneCountry = async (req,res)=>{
-    const {id}= req.params;
-    try{
-        const pais= await Country.findByPk(id.toUpperCase(),{
-            attributes: [
-                "id",
-                "name",
-                "imgFlag",
-                "continent",
-                "population",
-                "capital",
-                "subregion",
-                "area",
-              ],
-            include: [{
-                model: Activity,
-                attributes: { exclude: [ "createdAt", "deletedAt", "updatedAt" ] },
-                through: { attributes: [] },
-                as: "activities"
-            }]
-        });
-        res.status(200).json(pais)
+const getAllCountriesController = async () => {
+     //La primera vez que llame a la API va a estar vacía, asi que hay que tener cuidado
+     if (await Country.count()===0){
+        const countries = await traerCountries();
+        await Country.bulkCreate(countries); //bulkCreate nos permite ingresar muchos registros con un solo llamado
+        return countries;
     }
-    catch(error){
-        res.status(500).json({message:error.message}) //No quiero poner el 404 porque acá sería Server Error
+    else{
+        countries=await Country.findAll()
+        return countries;
     }
-
+    
+   
 }
-
-const getCountries = async (req,res)=>{
-    const {nombre}=req.query;
-    try{
-        //La primera vez que llame a la API va a estar vacía, asi que hay que tener cuidado
-        if (await Country.count()===0){
-            const countries = await traerCountries();
-            await Country.bulkCreate(countries); //bulkCreate nos permite ingresar muchos registros con un solo llamado
-        }
-        const includeActivityModel = [{
-            model: Activity,
-            through: { attributes: [] },
-            as: "activities",
-            attributes: { exclude: ["deletedAt", "updatedAt", "createdAt"] }
-        }]
-        //Si ya había datos:
-        const reqCountries = nombre
-        ? await Country.findAll({where: { nombre: { [Op.match]: nombre }}, include: includeActivityModel })
-        : await Country.findAll({include: includeActivityModel})
-
-        res.status(200).json(reqCountries)
-
-    }
-    catch(error){
-        res.status(500).json({message: error.message})
-        console.log(error)
-    }
+const countryByIdController = async (id) => {
+    const country = await Country.findByPk(id.toUpperCase(),{
+        attributes: [
+            "id",
+            "name",
+            "imgFlag",
+            "continent",
+            "population",
+            "capital",
+            "subregion",
+            "area",
+          ],
+    });
+    return country;
+}
+const searchCountryByNameController = async(name) => {
+    const countryByName =  await Country.findAll({where: {name:name}});
+    return countryByName;
 }
 
 
-module.exports={
-    getCountries, getOneCountry
+module.exports = {
+    getAllCountriesController,
+    countryByIdController,
+    searchCountryByNameController
 }

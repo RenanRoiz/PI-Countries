@@ -8,7 +8,7 @@ Activity = (sequelize)=>{
         autoIncrement: true,
         primaryKey: true
     },
-        nombre:{
+        name:{
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
@@ -31,6 +31,10 @@ Activity = (sequelize)=>{
                 min: 1,
                 max: 24
             }
+        },
+        paises:{
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false
         }
     })
 }

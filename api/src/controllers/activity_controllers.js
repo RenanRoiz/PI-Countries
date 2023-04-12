@@ -1,61 +1,16 @@
-const { Country, Activity } = require('../db.js')
+const {Activity} = require("../db");
 
-const createActivity=async (req,res)=>{
-    const {nombre, dificultad, temporada, duracion, countries} = req.body;
-    try{
-        const nuevaActividad = await Activity.create({
-            nombre,
-            dificultad,
-            temporada,
-            duracion
-        });
-
-        if(countries && countries.length){
-            countries.forEach(async (pais) => {
-                const country = await Country.findByPk(pais.id)
-                await country?.addActivity(nuevaActividad)
-            });
-        }
-        else{
-            await Country.addActivity(nuevaActividad)
-        }
-
-    res.status(201).json({activity:nuevaActividad})
-
-    }
-    catch (error){
-    if (!nombre || !dificultad || !duracion || !temporada)
-        res.status(400).json({ message: 'Falta la información necesaria para crear una actividad.' })
-  
-      else if (error.message.includes('llave duplicada') || error.message.includes('Validation error'))
-        res.status(400).json({ message: `No se puede crear la actividad. Ya existe una con el nombre "${nombre}"` })
-      
-      else 
-        res.status(200).json("Actividad creada")
-    }
+const createActivity = async (name, dificultad, duracion, temporada, paises) =>{
+    const newActivity = await Activity.create({name, dificultad, duracion, temporada, paises});
+    return newActivity;
 }
 
-
-const traerActividades = async(req,res)=>{
-    try{
-        const activities = await Activity.findAll({
-            include: {
-                model: Country,
-                through: { attributes: [] },
-                as: "countries"
-            },
-            attributes: { exclude: [ "createdAt", "updatedAt" ] }
-        })
-        res.status(200).json(activities)
-    }
-
-    
-    catch(error){
-        res.status(500).json({message: error.message})
-    }
+const getAllActivities = async () => {
+    const allActivities = await Activity.findAll();
+    return allActivities;
 }
 
-
-module.exports={
-    createActivity, traerActividades
-}
+module.exports = {
+    createActivity,
+    getAllActivities
+};
