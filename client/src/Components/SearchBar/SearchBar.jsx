@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchCountries } from "../../redux/actions"
+import style from "./SearchBar.module.css"
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -16,9 +17,9 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={style.searchBar}>
       <input type="text" value={query} onChange={handleChange} />
-      <button type="submit">Search</button>
+      <button type="submit">Buscar</button>
     </form>
   );
 };

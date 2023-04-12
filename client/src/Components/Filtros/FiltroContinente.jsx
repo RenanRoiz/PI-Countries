@@ -1,5 +1,6 @@
 import { useDispatch} from "react-redux";
-import {filterByContinent } from "../../redux/actions";
+import {filterByContinent} from "../../redux/actions";
+import style from "./FiltroContinente.module.css"
 
 const FiltroContinente = ()=>{
 
@@ -9,8 +10,18 @@ const FiltroContinente = ()=>{
     dispatch(filterByContinent(continent));
   };
 
+  const ResetButton = () => {
+    const handleResetClick = () => {
+      window.location.reload();
+    };
+  
+    return <button onClick={handleResetClick}>All</button>;
+  };
+
   return(
-    <div>
+    <div className={style.filtrocontinente}>
+        <h5>Filtro Por región: </h5>
+        <ResetButton />
         <button onClick={() => handleContinentFilter("North America")}>North America</button>
         <button onClick={() => handleContinentFilter("Europe")}>Europe</button>
         <button onClick={() => handleContinentFilter("Asia")}>Asia</button>

@@ -1,0 +1,40 @@
+.filtrocontinente{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.filtrocontinente h5{
+    color: #333333;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 10px;
+}
+.filtrocontinente button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agregar sombra */
+    background-image: linear-gradient(to bottom, #3498db, #2980b9); /* Agregar gradiente */
+}
+
+.filtrocontinente button:hover {
+    background-color: #2980b9;
+    background-image: linear-gradient(to bottom, #2980b9, #3498db); /* Cambiar gradiente al pasar el cursor */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Aumentar sombra al pasar el cursor */
+}

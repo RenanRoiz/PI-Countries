@@ -9,6 +9,7 @@ import FiltroContinente from "../../Components/Filtros/FiltroContinente";
 import SortCountriesByName from "../../Components/Ordenar/OrdenarPais";
 import SortCountriesByPopulation from "../../Components/Ordenar/OrdenarPoblacion"
 import Paged from "../../Components/Paginado/Paginado";
+import style from "./Home.module.css";
 
 
 const Home = ()=>{
@@ -27,25 +28,23 @@ const Home = ()=>{
         dispatch(setCurrentPage(page));
       };
     
-      const ResetButton = () => {
-        const handleResetClick = () => {
-          window.location.reload();
-        };
-      
-        return <button onClick={handleResetClick}>Reset</button>;
-      };
+
 
 
     return (
-        <>
-            <SortCountriesByPopulation />
-            <SortCountriesByName />
+        <div className={style.container}>
+            <div className={style.filterContainer}>
+              <SortCountriesByPopulation />
+              <SortCountriesByName />
+            </div>
             <FiltroContinente />
+             <div className={style.container_2}>
              <SearchBar />
-             <Paged currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-             <ResetButton />
+            </div>
+            
              <CardsContainer currentPage={currentPage} pageSize={pageSize}/>
-        </>
+             <Paged currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+        </div>
            
     )
 }

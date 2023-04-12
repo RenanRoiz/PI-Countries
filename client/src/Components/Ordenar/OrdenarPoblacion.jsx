@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { sortCountriesByPopulation } from "./../../redux/actions";
+import style from "./OrdenarPoblacion.module.css"
 
 const SortCountriesByPopulation = () => {
   const dispatch = useDispatch();
@@ -10,9 +11,10 @@ const SortCountriesByPopulation = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => handleSort('asc')}>Ascendente</button>
-      <button onClick={() => handleSort('desc')}>Descendente</button>
+    <div className={style.ordenarPoblacion}>
+      <h5>Ordenar por Población: </h5>
+      <button onClick={() => handleSort('asc')}>Asc</button>
+      <button onClick={() => handleSort('desc')}>Desc</button>
     </div>
   );
 };

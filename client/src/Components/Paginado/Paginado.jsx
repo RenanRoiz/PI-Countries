@@ -1,3 +1,5 @@
+import style from "./Paginado.module.css"
+
 const Paged = ({ currentPage, totalPages, onPageChange }) => {
     const handlePrevClick = () => {
       if (currentPage > 1) {
@@ -12,7 +14,7 @@ const Paged = ({ currentPage, totalPages, onPageChange }) => {
     };
   
     return (
-      <div>
+      <div className={style.paginado}>
         <button onClick={handlePrevClick}>Prev</button>
         <span>{currentPage}</span>
         <button onClick={handleNextClick}>Next</button>
