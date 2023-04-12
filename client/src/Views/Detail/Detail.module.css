@@ -1,0 +1,47 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    margin: 10px auto;
+  }
+  
+  .contenedor img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .contenedor h1 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .contenedor h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .contenedor h4 {
+    font-size: 1rem;
+    margin: 5px 0;
+    text-align: center;
+  }
+  
+  .contenedor h4:first-of-type {
+    margin-top: 15px;
+  }
+  
+  .contenedor h4:last-of-type {
+    margin-bottom: 15px;
+  }
+  

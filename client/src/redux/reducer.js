@@ -1,8 +1,9 @@
 import { GET_COUNTRIES, SEARCH_COUNTRIES,FILTER_BY_CONTINENT,SORT_COUNTRIES_BY_NAME,
-  SORT_COUNTRIES_BY_POPULATION, GET_ACTIVITIES, ADD_ACTIVITY, SET_CURRENT_PAGE } from "./actions";
+  SORT_COUNTRIES_BY_POPULATION, GET_ACTIVITIES, SET_CURRENT_PAGE,POST_ACTIVITY, GET_BY_ID } from "./actions";
 
 const initialState={
     countries: [],
+    detail:[],
     activities: [],
     sortedBy: {
       name: null,
@@ -21,11 +22,14 @@ const rootReducer=(state=initialState, action)=>{
         case GET_ACTIVITIES:
             return {...state, activities: action.payload}
 
-        case ADD_ACTIVITY:
-            return {
-                  ...state,
-                  activities: [...state.activities, action.payload],
-                };
+            case GET_BY_ID: 
+              return { 
+                      ...state,
+                      detail: action.payload,
+              }; 
+        
+        case POST_ACTIVITY:
+            return {...state};
 
         case SEARCH_COUNTRIES:
             const query = action.payload.toLowerCase();

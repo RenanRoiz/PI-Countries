@@ -7,9 +7,8 @@ export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
 export const SORT_COUNTRIES_BY_NAME = 'SORT_COUNTRIES_BY_NAME';
 export const SORT_COUNTRIES_BY_POPULATION = 'SORT_COUNTRIES_BY_POPULATION';
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
-export const ADD_ACTIVITY = "ADD_ACTIVITY";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
-
+export const POST_ACTIVITY = "POST_ACTIVITY"
 
 export const getCountries = () => {
     return async function (dispatch) {
@@ -20,31 +19,33 @@ export const getCountries = () => {
     };
   };
 
-export const getActivities = () => {
-    return async function (dispatch) {
-      const apiData= await axios.get("http://localhost:3001/activities");
-      const activities = apiData.data;
-      dispatch({ type: GET_ACTIVITIES, payload: activities });
-      ;
-    };
-  };
+export function getActivities () {
 
-export const addActivity = (activityData) => {
-    return async (dispatch) => {
-      try {
-        const response = await axios.post('/activities', activityData);
-        const newActivity = response.data;
-        dispatch({ type: ADD_ACTIVITY, payload: newActivity });
-        return { success: true, data: newActivity };
-      } catch (error) {
-        return { success: false, error: error.message };
-      }
+    return async function(dispatch){
+      const apiData = await axios.get("http://localhost:3001/activities");
+      const activities = apiData.data;
+      return dispatch({
+          type: GET_ACTIVITIES,
+          payload:activities.data,
+      })
+        
+        }
+}
+
+export const postActivity = (payload) =>
+    async (dispatch) => {
+        try {
+            const res = await axios
+                .post("http://localhost:3001/activities", payload);
+            dispatch({ type: POST_ACTIVITY, payload: res.data });
+        } catch (error) {
+            console.error('Error postting activity:', error);
+        }
     };
-};
   
-export const getCountry = (id) => {
+export const getCountry = (ID) => {
     return async function (dispatch) {
-      const apiData = await axios.get(`localhost:3001/countries/${id}`);
+      const apiData = await axios.get(`localhost:3001/countries/${ID}`);
       const country = apiData.data;
       dispatch({type:GET_BY_ID, payload:country})
       ;
