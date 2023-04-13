@@ -16,10 +16,10 @@ const getCountryById = async (req, res) => {
 const getAllCountriesHandler = async (req, res) => {
     try {
         const { name } = req.query;
-        const resutls = name ? await searchCountryByNameController(name) : await getAllCountriesController();
+        const results = name ? await searchCountryByNameController(name) : await getAllCountriesController();
         
         
-        res.status(200).json(resutls)
+        res.status(200).json(results)
     } catch (error) {
         res.status(400).json({error:error.message})
     }  

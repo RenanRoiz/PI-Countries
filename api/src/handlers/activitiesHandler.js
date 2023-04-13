@@ -19,8 +19,8 @@ const postActivitiesHandler = async (req, res) => {
 
 const getAllActivitiesHandler = async (req, res) => {
     try {
-        const restults = await getAllActivities();
-        res.status(200).json(restults)
+        const results = await getAllActivities();
+        res.status(200).json(results)
     } catch (error) {
         res.status(400).json({error:error.message})
     }

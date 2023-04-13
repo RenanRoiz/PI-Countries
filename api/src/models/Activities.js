@@ -36,7 +36,10 @@ Activity = (sequelize)=>{
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false
         }
-    })
+    },{
+        timestamps: false /*Evitamos que sequelize agregue automáticamente los campos de marca de tiempo 
+        //"createdAt" y "updatedAt" a la tabla de base de datos*/
+      })
 }
 
 module.exports=Activity;
