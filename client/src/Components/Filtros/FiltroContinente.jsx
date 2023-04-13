@@ -1,14 +1,25 @@
 import { useDispatch} from "react-redux";
-import {filterByContinent} from "../../redux/actions";
+import { useEffect } from "react";
+import {filterByContinent,getActivities} from "../../redux/actions";
 import style from "./FiltroContinente.module.css"
 
 const FiltroContinente = ()=>{
 
   const dispatch=useDispatch();
+  
 
   const handleContinentFilter = (continent) => {
     dispatch(filterByContinent(continent));
   };
+
+  useEffect(()=>{
+    dispatch(getActivities());
+  },[dispatch])
+
+  /*const activities = useSelector((state)=>state.activities);
+  const handleFiltroChange =(actividad)=>{
+    dispatch()
+  }*/
 
   const ResetButton = () => {
     const handleResetClick = () => {
@@ -34,5 +45,11 @@ const FiltroContinente = ()=>{
   
 }
 
+/*
+<select name="activities" onChange={handleFiltroChange}>
+          <option key="" value=""> Seleccionar paises</option>
+          {activities.map((elemento) => {return <option>{elemento.name}</option>})}
+        </select>
+*/
 
 export default FiltroContinente;

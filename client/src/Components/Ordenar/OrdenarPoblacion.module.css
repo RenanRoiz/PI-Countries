@@ -34,6 +34,11 @@
     background: linear-gradient(to bottom, #5b3fd1, #6fc4bd);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
+
+      .ordenarPoblacion button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(110, 69, 226, 0.3);
+  }
   
   .ordenarPoblacion .active {
     background-color: #666666;

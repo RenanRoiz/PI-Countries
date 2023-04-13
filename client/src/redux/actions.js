@@ -1,14 +1,15 @@
 import axios from "axios";
 export const GET_COUNTRIES="GET_COUNTRIES";
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
+export const POST_ACTIVITY = "POST_ACTIVITY";
 export const GET_BY_ID= "GET_BY_ID"; 
 export const SEARCH_BY_NAME= "SEARCH_BY_NAME"; 
-export const SEARCH_COUNTRIES = "SEARCH_COUNTRIES";
 export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+export const SEARCH_COUNTRIES = "SEARCH_COUNTRIES";
 export const SORT_COUNTRIES_BY_NAME = 'SORT_COUNTRIES_BY_NAME';
 export const SORT_COUNTRIES_BY_POPULATION = 'SORT_COUNTRIES_BY_POPULATION';
-export const GET_ACTIVITIES = "GET_ACTIVITIES";
-export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
-export const POST_ACTIVITY = "POST_ACTIVITY"
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 
 export const getCountries = () => {
     return async function (dispatch) {
@@ -82,6 +83,6 @@ export const sortCountriesByPopulation = (order) => ({
 });
 
 export const setCurrentPage = (page) => ({
-  type: 'SET_CURRENT_PAGE',
+  type: SET_CURRENT_PAGE,
   payload: page,
 });

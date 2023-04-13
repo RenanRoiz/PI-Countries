@@ -12,7 +12,6 @@ const Card = (props)=>{
                 {props.name}
             </Link></h2>
             <h3>Continente: {props.continent}</h3>
-            <h4>Población: {props.population}</h4>
         </div>
         
     )

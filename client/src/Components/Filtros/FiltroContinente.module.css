@@ -38,3 +38,8 @@
     background-image: linear-gradient(to bottom, #2980b9, #3498db); /* Cambiar gradiente al pasar el cursor */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Aumentar sombra al pasar el cursor */
 }
+
+.filtrocontinente button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(110, 69, 226, 0.3);
+  }

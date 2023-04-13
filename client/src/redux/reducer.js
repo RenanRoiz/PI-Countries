@@ -91,9 +91,18 @@ const rootReducer=(state=initialState, action)=>{
               ...state,
               currentPage: action.payload,
             };
+
+        case "FILTER_BY_ACTIVITIES":
+          return {
+            ...state,
+            actividadesFiltradas: state.activities.filter(actividad => actividad.nombre.toLowerCase().includes(action.payload.toLowerCase()))
+          }
+
         default: 
             return{...state}
     }
+
+    
 }
 
 export default rootReducer;

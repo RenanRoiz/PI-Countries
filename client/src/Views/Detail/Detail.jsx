@@ -24,15 +24,12 @@ const Detail = ()=>{
         const filteredData = countries.find(item => item.id === id);
         return filteredData;
       }
+      const filteredActivities = activities.filter((actividad) => {
+        return actividad.paises.includes(ID);
+      });
     
-      function filtradoActividad(id){
-        const actividades = activities.find(actividad=>actividad.id === id);
-        return actividades;
-      }
-
     const filteredData = filterById(ID);
-    const actividadFiltrada=filtradoActividad(ID);
-
+    
     return (
         <div className={style.detail}>
         <div className={style.contenedor}>
@@ -44,7 +41,8 @@ const Detail = ()=>{
             <h4>Subregion: {filteredData.subregion}</h4>
             <h4>Area: {filteredData.area}</h4>
             <h4>Poblacion: {filteredData.population}</h4>
-            <h3>Actividades: {actividadFiltrada}</h3>
+            <h3>Actividades: {filteredActivities.map((actividad) => {
+                return <h5 key={actividad.id}>{actividad.name}</h5>;})}</h3>
         </div>
         </div>
     )
